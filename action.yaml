@@ -1,3 +1,4 @@
+---
 name: 'issue_auto_close_reopen'
 description: 'Open or close issues based on ProjectV2 columns'
 inputs:
