@@ -19,6 +19,6 @@ inputs:
   projectNumber:
     description: 'The project number, found from the project URL'
     required: true
-# runs:
-  # using: 'node16'
-  # main: 'index.js'
+runs:
+  using: 'node16'
+  main: 'index.js'
