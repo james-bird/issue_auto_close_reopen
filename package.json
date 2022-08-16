@@ -1,0 +1,25 @@
+{
+  "name": "issue_auto_close_reopen",
+  "version": "1.0.0",
+  "description": "Github action to automatically close/reopen an issue when moved across project columns",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/james-bird/issue_auto_close_reopen.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/james-bird/issue_auto_close_reopen/issues"
+  },
+  "homepage": "https://github.com/james-bird/issue_auto_close_reopen#readme",
+  "dependencies": {
+    "@actions/core": "^1.9.1",
+    "@actions/github": "^5.0.3",
+    "got": "^12.3.1"
+  }
+}
