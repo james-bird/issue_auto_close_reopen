@@ -1,1 +1,23 @@
-
+name: 'issue_auto_close_reopen'
+description: 'Open or close issues based on ProjectV2 columns'
+inputs:
+  accessToken:
+    description: 'Github PAT'
+    required: true
+  openColumns:
+    description: 'Columns where issues are automatically reopened if moved there'
+    default: 'To Do, To do'
+    required: true
+  closedColumns:
+    description: 'Columns where issues are automatically close if moved there'
+    default: 'Closed, Done'
+    required: true
+  organisation:
+    description: 'Organisation who owns the project'
+    required: true
+  projectNumber:
+    description: 'The project number, found from the project URL'
+    required: true
+runs:
+  using: 'node16'
+  main: 'index.js'
