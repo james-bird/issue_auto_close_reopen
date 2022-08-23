@@ -13,8 +13,12 @@ inputs:
     description: 'Columns where issues are automatically close if moved there'
     default: 'Closed, Done'
     required: true
-  organisation:
-    description: 'Organisation who owns the project'
+  ownership-type:
+    description: Is the project owned by a user or an organisation?
+    default: organisation
+    required: true
+  owner:
+    description: 'Who owns the project'
     required: true
   projectNumber:
     description: 'The project number, found from the project URL'

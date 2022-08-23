@@ -15,8 +15,9 @@ function splitString(str, delimiter = ",") {
 
 const close_list = splitString(core.getInput('closedColumns'));
 const open_list = splitString(core.getInput('openColumns'));
-const orgName = core.getInput('organisation')
+const orgName = core.getInput('owner')
 const proNumber = core.getInput('projectNumber')
+const ownership_type = core.getInput('ownership-type')
 
 // A function to close a github issue
 function closeIssue(issueID, title) {
@@ -64,8 +65,8 @@ reopenIssue(input: {issueId: \"${issueID}\"}) {
 
 
 function createQueryOptions(offset = "") {
-
-  let query = `
+  if (ownership_type == "organisation") {
+    let query = `
 query{organization(login: \"${orgName}\") {
     projectV2(number: ${proNumber}) {
       items(first:50  after: \"${offset}\") {
@@ -97,6 +98,40 @@ query{organization(login: \"${orgName}\") {
     }
   }
 }`;
+  } elseif(ownership_type == "user"){
+    let query = `
+    query{user(login: \"${orgName}\") {
+    projectV2(number: ${proNumber}) {
+      items(first:50  after: \"${offset}\") {
+        totalCount
+        nodes {
+          project {
+            title
+          }
+          content {
+            ... on Issue {
+              id
+              title
+              state
+            }
+          }
+          fieldValues(first: 10) {
+            nodes {
+              ... on ProjectV2ItemFieldSingleSelectValue {
+                nameHTML
+              }
+            }
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+      }
+    }
+  }
+}`;
+  }
 
   let options = {
     headers: {
